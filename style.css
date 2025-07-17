@@ -9,13 +9,29 @@
   align-items: center;
   justify-content: center;
   color: white;
+  position: relative;
+}
+
+.gone {
+  animation: gone forwards ease-out 1s;
+}
+
+@keyframes gone {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+  to {
+    opacity: 0;
+    top: -100px;
+  }
 }
 
 .rotated {
   transform: rotateY(180deg);
 }
 
-body {
+main {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
