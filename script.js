@@ -1,8 +1,19 @@
 const emojis = ["❤️", "😂", "😒", "😊", "🥰", "😁", "🤣", "😎"];
 const main = document.querySelector("main");
 
+// Randomizes the emojis
+for (let i = 0; i < emojis.length - 1; i++) {
+  let j = Math.floor(Math.random() * emojis.length);
+  let k = emojis[i];
+  emojis[i] = emojis[j];
+  emojis[j] = k;
+}
+
+level = 3;
+
+// Creates pairs of emojis and randomizes them
 function randomize() {
-  emojis.length = 4;
+  emojis.length = level;
   let newEmojis = emojis.concat(emojis);
   for (let i = 0; i < newEmojis.length - 1; i++) {
     let j = Math.floor(Math.random() * newEmojis.length);
@@ -19,6 +30,7 @@ function randomize() {
 
 randomize();
 
+// Function to rotateCards
 function rotateCards(newEmojis) {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card, index) => {
@@ -29,18 +41,22 @@ function rotateCards(newEmojis) {
   });
 }
 
+// Used to check whether cards chosen are correct
 function checkCards() {
   const cards = document.querySelectorAll(".card");
   const scoreDisplay = document.querySelector("h2");
   var score = 0;
   var array = [];
+  var rotated = false;
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      console.log("clicked");
+      if (card.textContent === array[0]) {
+        return;
+      }
+      array.push(card.textContent);
       let timeout;
       clearTimeout(timeout);
-      array.push(card.textContent);
-
+      console.log(array);
       if (array.length === 2) {
         if (array[0] === array[1]) {
           for (let i = 0; i < cards.length; i++) {
@@ -51,7 +67,7 @@ function checkCards() {
               cards[i].classList.add("gone");
             }
           }
-          score++;
+          score += 100;
           array = [];
           scoreDisplay.textContent = `Score: ${score}`;
         } else {
@@ -70,3 +86,11 @@ function checkCards() {
 }
 
 checkCards();
+var level;
+const button = document.querySelector("button");
+
+button.addEventListener("click", () => {
+  level += 1;
+  main.innerHTML = "";
+  randomize();
+});

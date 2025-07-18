@@ -1,3 +1,7 @@
+body {
+  font-family: arial;
+}
+
 .card {
   width: 120px;
   height: 200px;
@@ -13,17 +17,22 @@
 }
 
 .gone {
-  animation: gone forwards ease-out 1s;
+  animation: gone forwards ease-out 0.5s;
 }
 
 @keyframes gone {
-  from {
+  0% {
     opacity: 1;
     top: 0;
+    scale: 1;
   }
-  to {
+  99% {
     opacity: 0;
     top: -100px;
+    scale: 0.5;
+  }
+  100% {
+    scale: 0;
   }
 }
 
@@ -35,4 +44,49 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+button {
+  width: 100%;
+  background-color: aqua;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.to_next {
+  max-width: 400px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.432);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: block;
+  animation: show ease forwards 0.5s;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.next {
+  margin: 20px;
+}
+
+.next h2 {
+  font-size: 1.2rem;
+}
+
+@keyframes show {
+  from {
+    left: 45%;
+  }
+  to {
+    left: 50%;
+  }
 }
