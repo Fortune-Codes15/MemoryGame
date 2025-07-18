@@ -8,7 +8,7 @@ By the name of this repo you can prbably tell that this was coded using javascri
 
 1. Grid of face-down cards
 2. Flip 2 cards per turn
-3. Match pairs to keep them face-up
+3. Match pairs and they disappear
 4. Unmatched cards flip back down
 5. Goal: match all pairs
 6. Varying difficulty levels (Beginner, Intermediate, Advanced)
