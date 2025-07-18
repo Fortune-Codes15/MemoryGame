@@ -4,7 +4,7 @@ By the name of this repo you can prbably tell that this was coded using javascri
 
 ## Features
 
-## As the name suggests it is a memory game that should feel like you are playing purble pairs so the features include:
+#### As the name suggests it is a memory game that should feel like you are playing purble pairs so the features include:
 
 1. Grid of face-down cards
 2. Flip 2 cards per turn
@@ -36,4 +36,4 @@ By the name of this repo you can prbably tell that this was coded using javascri
 
 ## Why did i build this ?
 
-I know this looks like a lot but trust me i will get through the first five features. Well as none of you know i am probably typing this while i am sick and me being sick makes me all _how do you say_ more enthusiastic..... Anyways enthusiasm aside my brother _younger..._ said i can't code or program that memory game from purble game so i took it as a challenge and created my own emoji based purble place and made it even more _how do you say better_
+I have no idea why i built this it felt smart at the time.
