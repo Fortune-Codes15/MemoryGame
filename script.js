@@ -10,7 +10,7 @@ for (let i = 0; i < emojis.length - 1; i++) {
 }
 
 var level;
-level = 1;
+level = 8;
 var newEmojis;
 
 // Creates pairs of emojis and randomizes them
@@ -27,76 +27,50 @@ function randomize() {
     let html = `<div class='card'></div>`;
     main.innerHTML += html;
   });
-  checkCards();
 }
 
 randomize();
 
 // Used to check whether cards chosen are correct
-function checkCards() {
-  const cards = document.querySelectorAll(".card");
-  const scoreDisplay = document.querySelector("h2");
-  var score = 0;
-  var array = [];
-  cards.forEach((card, index) => {
-    card.addEventListener("click", () => {
-      console.log("clicked");
-      if (!card.classList.contains("rotated")) {
-        card.textContent = newEmojis[index];
-        card.classList.add("rotated");
-      } else if (card.classList.contains("rotated")) {
-        return;
-      }
-      array.push(card.textContent);
-      let timeout;
-      clearTimeout(timeout);
-      if (array.length === 2) {
-        if (array[0] === array[1]) {
-          for (let i = 0; i < cards.length; i++) {
-            if (
-              cards[i].textContent == array[0] ||
-              cards[i].textContent == array[1]
-            ) {
-              cards[i].classList.add("gone");
-            }
-          }
-          score += 100;
-          array = [];
-          scoreDisplay.textContent = `Score: ${score}`;
-        } else {
-          cards.forEach((card) => {
-            timeout = setTimeout(() => {
-              card.textContent = "";
-              array = [];
-              card.classList.remove("rotated");
-            }, 500);
-          });
-        }
-        array = [];
-      }
-      toNextLevel();
-      if (toNextLevel() !== false) {
-        const nextLevel = document.querySelector(".to_next");
-        nextLevel.classList.remove("noDisplay");
-      }
-    });
-  });
-}
-
-const button = document.querySelector("button");
-button.addEventListener("click", () => {
-  const nextLevel = document.querySelector(".to_next");
-  main.innerHTML = "";
-  level++;
-  randomize();
-  nextLevel.classList.add("noDisplay");
-});
-
-function toNextLevel() {
-  const cards = document.querySelectorAll(".card");
-  for (let i = 0; i < cards.length; i++) {
-    if (!cards[i].classList.contains("gone")) {
-      return false;
+const cards = document.querySelectorAll(".card");
+const scoreDisplay = document.querySelector("h2");
+var score = 0;
+var array = [];
+cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+    console.log("clicked");
+    if (!card.classList.contains("rotated")) {
+      card.textContent = newEmojis[index];
+      card.classList.add("rotated");
+    } else if (card.classList.contains("rotated")) {
+      return;
     }
-  }
-}
+    array.push(card.textContent);
+    let timeout;
+    clearTimeout(timeout);
+    if (array.length === 2) {
+      if (array[0] === array[1]) {
+        for (let i = 0; i < cards.length; i++) {
+          if (
+            cards[i].textContent == array[0] ||
+            cards[i].textContent == array[1]
+          ) {
+            cards[i].classList.add("gone");
+          }
+        }
+        score += 100;
+        array = [];
+        scoreDisplay.textContent = `Score: ${score}`;
+      } else {
+        cards.forEach((card) => {
+          timeout = setTimeout(() => {
+            card.textContent = "";
+            array = [];
+            card.classList.remove("rotated");
+          }, 500);
+        });
+      }
+      array = [];
+    }
+  });
+});
